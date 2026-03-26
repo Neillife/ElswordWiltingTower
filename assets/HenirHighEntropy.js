@@ -1,5 +1,6 @@
 const TOTAL_PLATFORMS = 8;
 const PLATFORMS_PER_FLOOR = 4;
+const SAME_NUM = 18;
 
 const INAGE_ROOT_PATH = "./images/";
 const SYMBOLS = ["Ⅰ","Ⅱ","Ⅲ","Ⅳ","Ⅴ","Ⅵ","Ⅶ","Ⅷ"];
@@ -28,54 +29,59 @@ function shuffle(array) {
   return array.sort(() => Math.random() - 0.5);
 }
 
-function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+function isIdenticalSumButDifferentNumbers(topFiller) {
+  // 計算兩邊總和
+  let botFiller = generateNumberList();
+  let combined = new Set([...topFiller, ...botFiller]);
+  let topSum = topFiller.reduce((sum, n) => sum + parseInt(SYMBOL_TO_NUM[n]), 0);
+  let botSum = botFiller.reduce((sum, n) => sum + parseInt(SYMBOL_TO_NUM[n]), 0);
+  let hasOverlap = false;
+
+  if (finalResult == "same") {
+    while (combined.size !== TOTAL_PLATFORMS || topSum !== botSum) {
+      botFiller = generateNumberList();
+      botSum = botFiller.reduce((sum, n) => sum + parseInt(SYMBOL_TO_NUM[n]), 0);
+      combined = new Set([...topFiller, ...botFiller]);
+    }
+
+    let hasOverlap = topFiller.some(num => botFiller.includes(num));
+    if (hasOverlap || topSum !== botSum) {
+      return isIdenticalSumButDifferentNumbers(topFiller);
+    }
+  } else {
+    while (combined.size !== TOTAL_PLATFORMS) {
+      botFiller = generateNumberList();
+      botSum = botFiller.reduce((sum, n) => sum + parseInt(SYMBOL_TO_NUM[n]), 0);
+      combined = new Set([...topFiller, ...botFiller]);
+    }
+
+    // 無解的時候需要重新生成數字
+    if (Math.abs(topSum - botSum) >= 9) {
+      return isIdenticalSumButDifferentNumbers(generateNumberList());
+    }
+  }
+
+  // 總和一樣 沒有重複
+  return [(topSum === botSum) && !hasOverlap, topFiller, botFiller];
+}
+
+function generateNumberList() {
+  let result = shuffle([...SYMBOLS]).slice(0, TOTAL_PLATFORMS / 2);
+  if (finalResult === "same") {
+    let resultSum = result.reduce((sum, n) => sum + parseInt(SYMBOL_TO_NUM[n]), 0)
+    while (resultSum !== SAME_NUM) {
+      result = shuffle([...SYMBOLS]).slice(0, TOTAL_PLATFORMS / 2)
+      resultSum = result.reduce((sum, n) => sum + parseInt(SYMBOL_TO_NUM[n]), 0)
+    }
+  }
+  return result;
 }
 
 function generateSymbols() {
-  if (finalResult === "same") {
-    let topFiller = shuffle([...SYMBOLS, ...SYMBOLS, ...SYMBOLS]).slice(0, TOTAL_PLATFORMS / 2);
-    let topTotalNum = 0;
-    topFiller.forEach(symbols => {
-      topTotalNum += parseInt(SYMBOL_TO_NUM[symbols]);
-    });
-
-    let botFiller;
-    let botTotalNum;
-    while (topTotalNum != botTotalNum) {
-      botTotalNum = 0;
-      botFiller = shuffle([...SYMBOLS, ...SYMBOLS, ...SYMBOLS]).slice(0, TOTAL_PLATFORMS / 2);
-      botFiller.forEach(symbols => {
-        botTotalNum += parseInt(SYMBOL_TO_NUM[symbols]);
-      });
-    }
-
-    symbols = [...topFiller, ...botFiller];
-  } else {
-    let topFiller = shuffle([...SYMBOLS, ...SYMBOLS, ...SYMBOLS]).slice(0, TOTAL_PLATFORMS / 2);
-    let topTotalNum = 0;
-    topFiller.forEach(item => {
-      topTotalNum += parseInt(SYMBOL_TO_NUM[item]);
-    });
-
-    let botFiller;
-    let botTotalNum = topTotalNum;
-    while (topTotalNum === botTotalNum) {
-      botTotalNum = 0;
-      botFiller = shuffle([...SYMBOLS, ...SYMBOLS, ...SYMBOLS]).slice(0, TOTAL_PLATFORMS / 2);
-      botFiller.forEach(item => {
-        botTotalNum += parseInt(SYMBOL_TO_NUM[item]);
-      });
-
-      let tempFiller = [...topFiller, ...botFiller];
-      const checkDiffHaveSymbol = tempFiller.map((item, index) => SYMBOL_TO_NUM[item] === Math.abs((topTotalNum - botTotalNum)).toString() ? index : null).filter(i => i !== '').join('');
-      if (checkDiffHaveSymbol === '' || topTotalNum - botTotalNum > 8) {
-        botTotalNum = topTotalNum;
-      }
-    }
-
-    symbols = [...topFiller, ...botFiller];
-  }
+  let result = isIdenticalSumButDifferentNumbers(generateNumberList());
+  let topFiller = result[1];
+  let botFiller = result[2];
+  symbols = [...topFiller, ...botFiller];
 }
 
 function startTimer() {
