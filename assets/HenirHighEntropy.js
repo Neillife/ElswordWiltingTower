@@ -50,10 +50,6 @@ function generateSymbols() {
       });
     }
 
-    console.log(topFiller);
-    console.log(topTotalNum);
-    console.log(botFiller);
-    console.log(botTotalNum);
     symbols = [...topFiller, ...botFiller];
   } else {
     let topFiller = shuffle([...SYMBOLS, ...SYMBOLS, ...SYMBOLS]).slice(0, TOTAL_PLATFORMS / 2);
@@ -78,10 +74,6 @@ function generateSymbols() {
       }
     }
 
-    console.log(topFiller);
-    console.log(topTotalNum);
-    console.log(botFiller);
-    console.log(botTotalNum);
     symbols = [...topFiller, ...botFiller];
   }
 }
@@ -236,8 +228,6 @@ function getTotalDiff() {
   const topNumTotal = symbols.slice(0, 4).reduce((acc, cur) => acc + parseInt(SYMBOL_TO_NUM[cur]), 0);
   const botNumTotal = symbols.slice(-4).reduce((acc, cur) => acc + parseInt(SYMBOL_TO_NUM[cur]), 0);
 
-  console.log("前四總和:", topNumTotal);
-  console.log("後四總和:", botNumTotal);
   return [Math.abs(topNumTotal - botNumTotal), topNumTotal, botNumTotal];
 }
 
@@ -253,7 +243,6 @@ function recapImages() {
   recapBox.innerHTML = "<h3>🔁 最終結果: 上層數字總和 / 下層數字總和</h3>";
 
   let totalDiff = getTotalDiff();
-  console.log(symbols);
   const safeSpotIndices = symbols.map((s, i) => SYMBOL_TO_NUM[s] === totalDiff[0].toString() ? i : null).filter(i => i !== null);
 
   const isSafe = (idx) => safeSpotIndices.includes(idx);
