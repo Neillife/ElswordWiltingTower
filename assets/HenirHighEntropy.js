@@ -133,7 +133,7 @@ export function startGame() {
   startBtn.style.display = "none";
 
   finalResult = Math.random() < 0.5 ? "same" : "diff";
-  modeDisplay.innerHTML = ``;
+  modeDisplay.innerHTML = `高熵-數數兒`;
 
   generateSymbols();
   // assignVisibility();
