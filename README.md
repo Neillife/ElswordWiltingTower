@@ -1,7 +1,7 @@
-# Roman Numeral Mechanic Practice Tool (Elsword 21-4)
+# Elsword 羅馬數字機制練習工具 (21-4)
 
-This is a web-based practice tool designed to help players master the Roman Numeral mechanic from the Wilting Tower: Flight (21-4) dungeon in the game **Elsword**. It simulates the partial visibility and communication required to solve the mechanic under a time limit.
+該工具的原始概念和所有版權均歸[原作者](https://m.dcinside.com/board/els/1749192?headid=10&page=4)所有。
 
-All credits for the original concept and tool belong to [this person](https://m.dcinside.com/board/els/1749192?headid=10&page=4).
+這是一個基於原作者製作後，進行改善過的網頁練習工具，旨在幫助玩家掌握 **艾爾之光** 殞落之塔：翔（21-4）副本中的羅馬數字機制。 它模擬了在限定時間內解決該機制所需的部分視野和溝通。
 
-This version was translated to English, and the logic was modified to more closely match the in-game mechanics.
+此版本已翻譯成中文，修改了邏輯以更貼近遊戲內的機制，並額外新增了 **赫尼爾時空-高熵** 的變體機制供大家練習。
