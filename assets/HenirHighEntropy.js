@@ -1,7 +1,7 @@
 const TOTAL_PLATFORMS = 8;
 const PLATFORMS_PER_FLOOR = 4;
 
-const INAGE_ROOT_PATH = "../images/";
+const INAGE_ROOT_PATH = "./images/";
 const SYMBOLS = ["Ⅰ","Ⅱ","Ⅲ","Ⅳ","Ⅴ","Ⅵ","Ⅶ","Ⅷ"];
 const SYMBOL_TO_NUM = { "Ⅰ":"1", "Ⅱ":"2", "Ⅲ":"3", "Ⅳ":"4", "Ⅴ":"5", "Ⅵ":"6", "Ⅶ":"7", "Ⅷ":"8" };
 const SYMBOL_IMG = Object.fromEntries(SYMBOLS.map((s,i)=>[s,`${INAGE_ROOT_PATH}symbol_${i+1}.png`]));
