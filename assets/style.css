@@ -1,0 +1,143 @@
+body {
+    background: #111;
+    color: white;
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+}
+
+#game {
+    width: 1280px;
+    text-align: center;
+    position: relative;
+}
+
+#modeDisplay {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#timer {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 22px;
+    color: #ff6666;
+}
+
+.platform-group {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+.left-row {
+    display: flex;
+    gap: 10px;
+}
+
+.right-row {
+    display: flex;
+    gap: 10px;
+}
+
+.platform {
+    width: 80px;
+    height: 80px;
+    border: 2px solid #555;
+    background-color: #222;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.platform img {
+    width: 70px;
+    height: 70px;
+}
+
+#chatlog {
+    background: #222;
+    padding: 10px;
+    margin-top: 20px;
+    min-height: 150px;
+    text-align: left;
+}
+
+input {
+    padding: 6px;
+    font-size: 16px;
+    margin: 10px;
+    width: 400px;
+}
+
+button {
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    margin: 10px;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+button:hover {
+    border-color: #3498db;
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
+}
+
+select {
+    padding: 8px 20px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    background-color: white;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+select:hover {
+    border-color: #3498db;
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
+}
+
+#controls,
+#recap {
+    margin-top: 10px;
+}
+
+#result {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: yellow;
+}
+
+.comp-view {
+    filter: brightness(0.5);
+}
+
+.recap-row {
+    margin: 6px 0;
+}
+
+.correct-tile {
+    outline: 4px solid lime;
+    box-shadow: 0 0 10px lime;
+}
+
+.info-tooltip {
+    margin-left: 5px;
+    font-size: 1.2em;
+    cursor: help;
+    color: #add8e6;
+    display: inline-block;
+    vertical-align: middle;
+}
