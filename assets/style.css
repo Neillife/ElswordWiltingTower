@@ -1,4 +1,10 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
 body {
+    flex-direction: column;
     background: #111;
     color: white;
     font-family: sans-serif;
@@ -8,7 +14,7 @@ body {
 }
 
 #game {
-    width: 1280px;
+    width: 100%;
     text-align: center;
     position: relative;
 }
@@ -140,4 +146,24 @@ select:hover {
     color: #add8e6;
     display: inline-block;
     vertical-align: middle;
+}
+
+footer {
+  text-align: center;
+  padding: 20px 0;
+  font-size: 14px;
+  color: #ddd;
+  border-top: 1px solid #111;
+  background-color: #111;
+}
+
+footer a {
+  color: #007bff;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+footer a:hover {
+  text-decoration: underline;
+  color: #0056b3;
 }
