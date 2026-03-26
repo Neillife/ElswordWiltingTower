@@ -87,7 +87,9 @@ function startTimer() {
     timerDisplay.textContent = `⏱️ ${timeLeft}`;
     if (timeLeft <= 0) {
       clearInterval(timer);
-      resultBox.innerHTML = "⏰ 時間到!";
+      let totalDiff = getTotalDiff();
+      resultBox.innerHTML = `⏰ 時間到! </br> 上層總和: ${totalDiff[1]} </br> 下層總和: ${totalDiff[2]} </br> 總和差異: ${totalDiff[0]}`;
+      recapImages();
       inputBox.disabled = true;
       retryBtn.style.display = "inline-block";
       processSelectElement(resultBox);
@@ -136,7 +138,6 @@ export function startGame() {
   modeDisplay.innerHTML = `高熵-數數兒`;
 
   generateSymbols();
-  // assignVisibility();
 
   renderRow(topRow, [...Array(PLATFORMS_PER_FLOOR).keys()]);
   renderRow(bottomRow, [...Array(PLATFORMS_PER_FLOOR).keys()].map(i => i + PLATFORMS_PER_FLOOR));
@@ -149,7 +150,6 @@ export function startGame() {
 
 function renderRow(row, indices) {
   row.innerHTML = '';
-  // const visibleSet = (row.id === "topRow") ? playerTopIdx : playerBotIdx;
 
   const leftDiv = document.createElement("div");
   leftDiv.className = "left-row";
@@ -162,14 +162,10 @@ function renderRow(row, indices) {
   indices.forEach(idx => {
       const div = document.createElement("div");
       div.className = "platform";
-      // if (visibleSet.includes(idx)) {
-        const sym = symbols[idx];
-        // if (sym && SYMBOL_IMG[sym]) {
-          const img = document.createElement("img");
-          img.src = SYMBOL_IMG[sym];
-          div.appendChild(img);
-        // }
-      // }
+      const sym = symbols[idx];
+      const img = document.createElement("img");
+      img.src = SYMBOL_IMG[sym];
+      div.appendChild(img);
 
       if (row.id === "topRow") {
         if (idx < 2 ) {
